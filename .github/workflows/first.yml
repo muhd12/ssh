@@ -1,7 +1,6 @@
-name:
-
-on: 
-
+name: whatwver
+on:
+  push:
 jobs:
   deploy:
     runs-on: ubuntu-latest
