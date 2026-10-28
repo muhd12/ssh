@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gumdrop Shop</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink:#ff4f8b; --yellow:#ffd23f; --teal:#1ec8b0; --blue:#3a6bff; --purple:#8a4fff; --orange:#ff8a3d;
+  --ink:#1f1b3a; --paper:#fff9ef; --card:#ffffff;
+  --head:'Fredoka','Trebuchet MS',sans-serif; --body:'DM Sans','Segoe UI',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.5}
+button,input{font:inherit}
+button{cursor:pointer;border:none}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+
+/* Header */
+header{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:16px;padding:12px 5vw;background:var(--ink);color:#fff}
+.logo{font-family:var(--head);font-size:1.6rem;font-weight:700;letter-spacing:.5px}
+.logo span:nth-child(1){color:var(--pink)}.logo span:nth-child(2){color:var(--yellow)}.logo span:nth-child(3){color:var(--teal)}
+#search{flex:1;max-width:420px;margin-left:auto;padding:10px 16px;border-radius:99px;border:none;background:#fff;color:var(--ink)}
+#cartBtn{position:relative;background:var(--yellow);color:var(--ink);font-weight:700;padding:10px 18px;border-radius:99px}
+#cartCount{position:absolute;top:-8px;right:-6px;min-width:24px;height:24px;border-radius:50%;background:var(--pink);color:#fff;font-size:.8rem;display:grid;place-items:center}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center;padding:56px 5vw;background:linear-gradient(120deg,var(--purple),var(--pink) 60%,var(--orange));color:#fff;overflow:hidden}
+.hero h1{font-family:var(--head);font-size:clamp(2.4rem,6vw,4.4rem);line-height:1.05}
+.hero p{margin:16px 0 24px;max-width:46ch;font-size:1.1rem}
+.cta{background:var(--yellow);color:var(--ink);font-weight:700;padding:14px 28px;border-radius:99px;font-size:1.05rem;box-shadow:0 5px 0 rgba(0,0,0,.25);transition:transform .1s}
+.cta:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.blobs{position:relative;height:260px}
+.blobs i{position:absolute;display:grid;place-items:center;font-style:normal;font-size:3.4rem;border-radius:50%;box-shadow:0 8px 0 rgba(0,0,0,.15)}
+.blobs i:nth-child(1){width:150px;height:150px;background:var(--yellow);left:8%;top:10%}
+.blobs i:nth-child(2){width:120px;height:120px;background:var(--teal);right:10%;top:0}
+.blobs i:nth-child(3){width:130px;height:130px;background:var(--blue);left:38%;bottom:0}
+
+/* Shop */
+.wrap{padding:40px 5vw 60px}
+.wrap h2{font-family:var(--head);font-size:2rem;margin-bottom:16px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.chip{padding:8px 18px;border-radius:99px;font-weight:700;background:#fff;color:var(--ink);border:3px solid var(--ink)}
+.chip.active{background:var(--ink);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:24px}
+.card{background:var(--card);border:3px solid var(--ink);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;box-shadow:6px 6px 0 var(--ink)}
+.thumb{height:170px;display:grid;place-items:center;font-size:5rem}
+.info{padding:16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.info h3{font-family:var(--head);font-size:1.2rem}
+.tag{align-self:flex-start;font-size:.78rem;font-weight:700;padding:2px 10px;border-radius:99px;color:#fff}
+.price{font-size:1.2rem;font-weight:700}
+.add{margin-top:auto;padding:10px;border-radius:12px;font-weight:700;color:#fff;background:var(--blue)}
+.add:hover{background:var(--purple)}
+.empty{grid-column:1/-1;text-align:center;padding:40px;font-size:1.1rem}
+
+/* Cart drawer */
+#overlay{position:fixed;inset:0;background:rgba(31,27,58,.55);opacity:0;pointer-events:none;transition:opacity .2s;z-index:30}
+#overlay.open{opacity:1;pointer-events:auto}
+aside{position:fixed;top:0;right:0;bottom:0;width:min(400px,100%);background:#fff;z-index:40;transform:translateX(100%);transition:transform .25s;display:flex;flex-direction:column}
+aside.open{transform:none}
+aside header{position:static;justify-content:space-between;background:var(--teal);color:var(--ink)}
+aside h2{font-family:var(--head)}
+#close{background:var(--ink);color:#fff;width:36px;height:36px;border-radius:50%}
+#items{flex:1;overflow-y:auto;padding:16px}
+.row{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:2px dashed #ddd}
+.row .em{font-size:2rem;width:56px;height:56px;display:grid;place-items:center;border-radius:14px;flex-shrink:0}
+.row .t{flex:1}
+.qty{display:flex;align-items:center;gap:8px;margin-top:4px}
+.qty button{width:28px;height:28px;border-radius:50%;background:var(--yellow);font-weight:700}
+.rm{background:none;color:var(--pink);font-weight:700}
+.foot{padding:16px;border-top:3px solid var(--ink)}
+.total{display:flex;justify-content:space-between;font-size:1.3rem;font-weight:700;margin-bottom:12px}
+.checkout{width:100%;padding:14px;border-radius:14px;background:var(--pink);color:#fff;font-weight:700;font-size:1.05rem}
+
+#toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,120px);background:var(--ink);color:#fff;padding:12px 22px;border-radius:99px;z-index:50;transition:transform .25s}
+#toast.show{transform:translate(-50%,0)}
+footer{background:var(--ink);color:#fff;text-align:center;padding:24px}
+
+@media(max-width:700px){.hero{grid-template-columns:1fr}.blobs{display:none}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo"><span>Gum</span><span>drop</span><span>Shop</span></div>
+  <input id="search" type="search" placeholder="Search products" aria-label="Search products">
+  <button id="cartBtn" aria-label="Open cart">Cart <span id="cartCount">0</span></button>
+</header>
+
+<section class="hero">
+  <div>
+    <h1>Bright things for everyday life</h1>
+    <p>Sneakers, bags, headphones and more, all in colors that wake you up. Free delivery on orders over 2,000.</p>
+    <button class="cta" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">Shop now</button>
+  </div>
+  <div class="blobs" aria-hidden="true"><i>👟</i><i>🎧</i><i>🎒</i></div>
+</section>
+
+<main class="wrap" id="shop">
+  <h2>All products</h2>
+  <div class="chips" id="chips"></div>
+  <div class="grid" id="grid"></div>
+</main>
+
+<footer>© 2026 Gumdrop Shop. Made with HTML, CSS and JavaScript.</footer>
+
+<div id="overlay"></div>
+<aside id="drawer" aria-label="Shopping cart">
+  <header><h2>Your cart</h2><button id="close" aria-label="Close cart">✕</button></header>
+  <div id="items"></div>
+  <div class="foot">
+    <div class="total"><span>Total</span><span id="total">0</span></div>
+    <button class="checkout" id="checkout">Place order</button>
+  </div>
+</aside>
+<div id="toast" role="status"></div>
+
+<script>
+const CURRENCY = '₹';
+const COLORS = { Shoes:'#ff4f8b', Audio:'#3a6bff', Bags:'#1ec8b0', Home:'#ff8a3d', Wear:'#8a4fff' };
+const TINTS  = { Shoes:'#ffe0ec', Audio:'#dfe7ff', Bags:'#d6f7f2', Home:'#ffe8d6', Wear:'#ece0ff' };
+
+const products = [
+  { id:1,  name:'Cloud Runner Sneakers', cat:'Shoes', price:3499, emoji:'👟' },
+  { id:2,  name:'Neon Slides',           cat:'Shoes', price:1199, emoji:'🩴' },
+  { id:3,  name:'Pop Wireless Headphones',cat:'Audio', price:2999, emoji:'🎧' },
+  { id:4,  name:'Mini Bluetooth Speaker',cat:'Audio', price:1799, emoji:'🔊' },
+  { id:5,  name:'Day Trip Backpack',     cat:'Bags',  price:1999, emoji:'🎒' },
+  { id:6,  name:'Candy Tote Bag',        cat:'Bags',  price:899,  emoji:'👜' },
+  { id:7,  name:'Sunny Water Bottle',    cat:'Home',  price:649,  emoji:'🧴' },
+  { id:8,  name:'Glow Desk Lamp',        cat:'Home',  price:1499, emoji:'💡' },
+  { id:9,  name:'Cozy Hoodie',           cat:'Wear',  price:2299, emoji:'🧥' },
+  { id:10, name:'Rainbow Cap',           cat:'Wear',  price:599,  emoji:'🧢' },
+  { id:11, name:'Round Sunglasses',      cat:'Wear',  price:999,  emoji:'🕶️' },
+  { id:12, name:'Smart Watch Lite',      cat:'Audio', price:3999, emoji:'⌚' }
+];
+
+let category = 'All', query = '';
+let cart = {}; // { productId: quantity }
+
+const $ = id => document.getElementById(id);
+const money = n => CURRENCY + n.toLocaleString('en-IN');
+
+function renderChips(){
+  const cats = ['All', ...new Set(products.map(p => p.cat))];
+  $('chips').innerHTML = cats.map(c =>
+    `<button class="chip ${c===category?'active':''}" data-cat="${c}">${c}</button>`).join('');
+}
+
+function renderGrid(){
+  const list = products.filter(p =>
+    (category==='All' || p.cat===category) &&
+    p.name.toLowerCase().includes(query.toLowerCase()));
+  $('grid').innerHTML = list.length ? list.map(p => `
+    <article class="card">
+      <div class="thumb" style="background:${TINTS[p.cat]}">${p.emoji}</div>
+      <div class="info">
+        <span class="tag" style="background:${COLORS[p.cat]}">${p.cat}</span>
+        <h3>${p.name}</h3>
+        <div class="price">${money(p.price)}</div>
+        <button class="add" data-id="${p.id}">Add to cart</button>
+      </div>
+    </article>`).join('')
+    : '<p class="empty">No products match your search. Try a different word.</p>';
+}
+
+function renderCart(){
+  const ids = Object.keys(cart);
+  const count = ids.reduce((s,id) => s + cart[id], 0);
+  const total = ids.reduce((s,id) => s + cart[id] * products.find(p => p.id==id).price, 0);
+  $('cartCount').textContent = count;
+  $('total').textContent = money(total);
+  $('items').innerHTML = ids.length ? ids.map(id => {
+    const p = products.find(x => x.id==id);
+    return `<div class="row">
+      <div class="em" style="background:${TINTS[p.cat]}">${p.emoji}</div>
+      <div class="t"><strong>${p.name}</strong><div>${money(p.price)}</div>
+        <div class="qty">
+          <button data-dec="${id}" aria-label="Decrease">−</button>
+          <span>${cart[id]}</span>
+          <button data-inc="${id}" aria-label="Increase">+</button>
+        </div></div>
+      <button class="rm" data-rm="${id}">Remove</button>
+    </div>`;
+  }).join('') : '<p class="empty">Your cart is empty. Add something colorful.</p>';
+}
+
+function toast(msg){
+  const t = $('toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('show'), 1800);
+}
+function openCart(open){
+  $('drawer').classList.toggle('open', open);
+  $('overlay').classList.toggle('open', open);
+}
+
+/* Events */
+$('chips').addEventListener('click', e => {
+  if(e.target.dataset.cat){ category = e.target.dataset.cat; renderChips(); renderGrid(); }
+});
+$('search').addEventListener('input', e => { query = e.target.value; renderGrid(); });
+$('grid').addEventListener('click', e => {
+  const id = e.target.dataset.id;
+  if(id){ cart[id] = (cart[id]||0) + 1; renderCart(); toast('Added to cart'); }
+});
+$('items').addEventListener('click', e => {
+  const d = e.target.dataset;
+  if(d.inc) cart[d.inc]++;
+  if(d.dec){ cart[d.dec]--; if(cart[d.dec] <= 0) delete cart[d.dec]; }
+  if(d.rm) delete cart[d.rm];
+  renderCart();
+});
+$('cartBtn').onclick = () => openCart(true);
+$('close').onclick = $('overlay').onclick = () => openCart(false);
+document.addEventListener('keydown', e => { if(e.key==='Escape') openCart(false); });
+$('checkout').onclick = () => {
+  if(!Object.keys(cart).length){ toast('Your cart is empty'); return; }
+  cart = {}; renderCart(); openCart(false); toast('Order placed. Thank you!');
+};
+
+renderChips(); renderGrid(); renderCart();
+</script>
+</body>
+</html>
