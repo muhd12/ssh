@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fashion Store - Myntra Inspired</title>
-    <!-- Font Awesome for Icons -->
+    <title>Online Shopping for Women, Men, Kids Fashion & Lifestyle - Myntra</title>
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -19,13 +19,13 @@
             color: #282c3f;
         }
 
-        /* --- Header / Navbar --- */
+        /* --- HEADER NAVBAR --- */
         header {
             position: sticky;
             top: 0;
             background-color: #ffffff;
             box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
-            z-index: 100;
+            z-index: 999;
         }
 
         .navbar {
@@ -33,152 +33,264 @@
             align-items: center;
             justify-content: space-between;
             height: 80px;
-            padding: 0 4%;
-            max-width: 1400px;
+            padding: 0 40px;
+            max-width: 1440px;
             margin: 0 auto;
         }
 
-        .logo {
-            font-size: 24px;
-            font-weight: 900;
-            letter-spacing: 1px;
-            color: #ff3f6c;
-            text-decoration: none;
-            text-transform: uppercase;
+        /* Logo Styling */
+        .logo-container {
+            display: flex;
+            align-items: center;
         }
 
+        .myntra-logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: #ff3f6c;
+            letter-spacing: 2px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Nav Navigation Links */
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 30px;
+            height: 100%;
         }
 
-        .nav-links a {
+        .nav-item {
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .nav-item a {
             text-decoration: none;
             color: #282c3f;
             font-size: 14px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.3px;
-            padding: 28px 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
             border-bottom: 4px solid transparent;
-            transition: border-color 0.2s;
+            transition: border-color 0.2s ease;
         }
 
-        .nav-links a:hover {
+        .nav-item:hover a {
             border-bottom-color: #ff3f6c;
         }
 
-        .search-bar {
+        .nav-item .badge {
+            position: absolute;
+            top: 15px;
+            right: 10px;
+            font-size: 9px;
+            background-color: #ff3f6c;
+            color: white;
+            padding: 1px 4px;
+            border-radius: 2px;
+            font-weight: 700;
+        }
+
+        /* Search Bar */
+        .search-container {
             display: flex;
             align-items: center;
             background-color: #f5f5f6;
-            padding: 8px 14px;
+            border: 1px solid #f5f5f6;
             border-radius: 4px;
             width: 30%;
+            height: 40px;
+            padding: 0 12px;
+            transition: all 0.3s;
         }
 
-        .search-bar i {
+        .search-container:focus-within {
+            background-color: #ffffff;
+            border-color: #d4d5d9;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+        }
+
+        .search-container i {
             color: #696e79;
-            margin-right: 10px;
+            font-size: 14px;
+            margin-right: 12px;
         }
 
-        .search-bar input {
+        .search-input {
             border: none;
             outline: none;
             background: transparent;
             width: 100%;
             font-size: 14px;
+            color: #282c3f;
         }
 
-        .user-actions {
+        /* User Actions (Profile, Wishlist, Bag) */
+        .action-container {
             display: flex;
-            gap: 24px;
+            gap: 28px;
         }
 
-        .action-item {
+        .action-link {
             display: flex;
             flex-direction: column;
             align-items: center;
             text-decoration: none;
             color: #282c3f;
             font-size: 12px;
-            font-weight: 700;
+            font-weight: 600;
         }
 
-        .action-item i {
+        .action-link i {
             font-size: 18px;
             margin-bottom: 4px;
+            color: #282c3f;
         }
 
-        /* --- Hero Banner --- */
-        .hero-banner {
+        .action-link:hover {
+            color: #ff3f6c;
+        }
+
+        .action-link:hover i {
+            color: #ff3f6c;
+        }
+
+        /* --- HERO BANNER SECTION --- */
+        .banner-container {
+            max-width: 1400px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .banner-slider {
             width: 100%;
-            margin-bottom: 40px;
+            height: 380px;
+            background: linear-gradient(135deg, #ff3f6c 0%, #ff7396 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 60px;
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 63, 108, 0.2);
         }
 
-        .hero-banner img {
-            width: 100%;
-            height: auto;
-            display: block;
+        .banner-text h1 {
+            font-size: 42px;
+            font-weight: 900;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
         }
 
-        /* --- Main Content Layout --- */
-        .container {
-            max-width: 1300px;
+        .banner-text p {
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        .banner-btn {
+            background-color: #ffffff;
+            color: #ff3f6c;
+            padding: 12px 28px;
+            border-radius: 4px;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 14px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* --- MAIN CATALOG CONTENT --- */
+        .main-content {
+            max-width: 1350px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        .section-title {
-            font-size: 24px;
+        .category-heading {
+            font-size: 22px;
             font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
             color: #3e4152;
-            margin: 40px 0 30px 0;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin: 40px 0 24px 0;
         }
 
-        /* --- Product Grid --- */
+        /* Product Grid */
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
         }
 
         .product-card {
             background: #ffffff;
             border-radius: 4px;
             overflow: hidden;
-            transition: box-shadow 0.3s ease, transform 0.2s ease;
-            cursor: pointer;
+            border: 1px solid #eaeaec;
+            transition: all 0.3s ease;
             position: relative;
+            cursor: pointer;
         }
 
         .product-card:hover {
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+            border-color: transparent;
         }
 
-        .product-image {
+        .product-image-wrapper {
+            position: relative;
             width: 100%;
             height: 280px;
+            background-color: #f5f5f6;
+        }
+
+        .product-image-wrapper img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
         }
 
-        .product-info {
-            padding: 12px 16px;
+        /* Rating Badge inside Card */
+        .product-rating {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 2px 6px;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
 
-        .brand-name {
+        .product-rating i {
+            color: #14958f;
+            font-size: 11px;
+        }
+
+        .product-details {
+            padding: 12px 14px 16px 14px;
+        }
+
+        .product-brand {
             font-size: 16px;
             font-weight: 700;
             color: #282c3f;
             margin-bottom: 4px;
         }
 
-        .product-title {
+        .product-name {
             font-size: 14px;
             color: #535766;
             font-weight: 400;
@@ -188,113 +300,134 @@
             margin-bottom: 8px;
         }
 
-        .price-container {
+        .product-pricing {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
+            font-size: 14px;
         }
 
-        .current-price {
-            font-size: 14px;
+        .price-current {
             font-weight: 700;
             color: #282c3f;
         }
 
-        .original-price {
-            font-size: 12px;
+        .price-original {
             color: #7e818c;
             text-decoration: line-through;
+            font-size: 12px;
         }
 
-        .discount {
-            font-size: 12px;
+        .price-discount {
             color: #ff905a;
+            font-size: 12px;
             font-weight: 700;
         }
 
-        /* --- Footer --- */
+        /* --- FOOTER --- */
         footer {
             background-color: #fafbfc;
-            padding: 40px 0 20px 0;
+            padding: 50px 0 20px 0;
             border-top: 1px solid #eaeaec;
-            margin-top: 60px;
+            color: #696e79;
         }
 
         .footer-content {
+            max-width: 1350px;
+            margin: 0 auto;
+            padding: 0 20px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 30px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
-        .footer-column h4 {
+        .footer-col h4 {
             font-size: 12px;
             font-weight: 700;
-            text-transform: uppercase;
             color: #282c3f;
-            margin-bottom: 16px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
         }
 
-        .footer-column ul {
+        .footer-col ul {
             list-style: none;
         }
 
-        .footer-column ul li {
-            margin-bottom: 8px;
+        .footer-col ul li {
+            margin-bottom: 10px;
         }
 
-        .footer-column ul li a {
+        .footer-col ul li a {
             text-decoration: none;
             color: #696e79;
             font-size: 14px;
         }
 
-        .copyright {
-            text-align: center;
-            color: #94969f;
-            font-size: 12px;
-            padding-top: 20px;
-            border-top: 1px solid #eaeaec;
+        .footer-col ul li a:hover {
+            color: #282c3f;
         }
 
-        /* Responsive adjustments */
+        .footer-bottom {
+            max-width: 1350px;
+            margin: 0 auto;
+            padding: 20px;
+            border-top: 1px solid #eaeaec;
+            text-align: center;
+            font-size: 12px;
+            color: #94969f;
+        }
+
+        /* Responsive */
         @media (max-width: 900px) {
-            .nav-links, .search-bar {
+            .nav-links, .search-container {
                 display: none;
+            }
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header Navigation -->
+    <!-- Header / Navigation Bar -->
     <header>
         <div class="navbar">
-            <a href="#" class="logo">MYNTRA</a>
-            
-            <ul class="nav-links">
-                <li><a href="#">Men</a></li>
-                <li><a href="#">Women</a></li>
-                <li><a href="#">Kids</a></li>
-                <li><a href="#">Home & Living</a></li>
-                <li><a href="#">Beauty</a></li>
-            </ul>
-
-            <div class="search-bar">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="Search for products, brands and more">
+            <div class="logo-container">
+                <a href="#" class="myntra-logo">
+                    <i class="fa-solid fa-m"></i>yntra
+                </a>
             </div>
 
-            <div class="user-actions">
-                <a href="#" class="action-item">
+            <ul class="nav-links">
+                <li class="nav-item"><a href="#">Men</a></li>
+                <li class="nav-item"><a href="#">Women</a></li>
+                <li class="nav-item"><a href="#">Kids</a></li>
+                <li class="nav-item"><a href="#">Home & Living</a></li>
+                <li class="nav-item"><a href="#">Beauty</a></li>
+                <li class="nav-item">
+                    <a href="#">Studio</a>
+                    <span class="badge">NEW</span>
+                </li>
+            </ul>
+
+            <div class="search-container">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" class="search-input" placeholder="Search for products, brands and more">
+            </div>
+
+            <div class="action-container">
+                <a href="#" class="action-link">
                     <i class="fa-regular fa-user"></i>
                     <span>Profile</span>
                 </a>
-                <a href="#" class="action-item">
+                <a href="#" class="action-link">
                     <i class="fa-regular fa-heart"></i>
                     <span>Wishlist</span>
                 </a>
-                <a href="#" class="action-item">
+                <a href="#" class="action-link">
                     <i class="fa-solid fa-bag-shopping"></i>
                     <span>Bag</span>
                 </a>
@@ -302,115 +435,133 @@
         </div>
     </header>
 
-    <!-- Main Hero Banner -->
-    <section class="hero-banner">
-        <img src="https://via.placeholder.com/1400x400/ff3f6c/ffffff?text=FLAT+50%25+OFF+-+BIG+FASHION+FESTIVAL" alt="Sale Banner">
-    </section>
+    <!-- Promotional Hero Banner -->
+    <div class="banner-container">
+        <div class="banner-slider">
+            <div class="banner-text">
+                <h1>END OF REASON SALE</h1>
+                <p>Get 50% - 80% Off on Top Global Brands</p>
+                <a href="#" class="banner-btn">Shop Now</a>
+            </div>
+        </div>
+    </div>
 
-    <!-- Main Content Container -->
-    <main class="container">
-
-        <h2 class="section-title">Trending In Fashion</h2>
-
-        <!-- Product Grid -->
+    <!-- Product Grid Catalog -->
+    <main class="main-content">
+        <h2 class="category-heading">Medal Worthy Brands To Bag</h2>
+        
         <div class="product-grid">
-
-            <!-- Product Card 1 -->
+            <!-- Item 1 -->
             <div class="product-card">
-                <img src="https://via.placeholder.com/280x350/282c3f/ffffff?text=Shirt" alt="Product Image" class="product-image">
-                <div class="product-info">
-                    <div class="brand-name">Roadster</div>
-                    <div class="product-title">Men Pure Cotton Casual Shirt</div>
-                    <div class="price-container">
-                        <span class="current-price">₹699</span>
-                        <span class="original-price">₹1,399</span>
-                        <span class="discount">(50% OFF)</span>
+                <div class="product-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=500&q=80" alt="Casual Shirt">
+                    <div class="product-rating">4.2 <i class="fa-solid fa-star"></i> | 1.4k</div>
+                </div>
+                <div class="product-details">
+                    <div class="product-brand">Roadster</div>
+                    <div class="product-name">Men Pure Cotton Casual Shirt</div>
+                    <div class="product-pricing">
+                        <span class="price-current">₹699</span>
+                        <span class="price-original">₹1,499</span>
+                        <span class="price-discount">(53% OFF)</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Product Card 2 -->
+            <!-- Item 2 -->
             <div class="product-card">
-                <img src="https://via.placeholder.com/280x350/ff3f6c/ffffff?text=Dress" alt="Product Image" class="product-image">
-                <div class="product-info">
-                    <div class="brand-name">DressBerry</div>
-                    <div class="product-title">Women Floral A-Line Dress</div>
-                    <div class="price-container">
-                        <span class="current-price">₹899</span>
-                        <span class="original-price">₹1,799</span>
-                        <span class="discount">(50% OFF)</span>
+                <div class="product-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=500&q=80" alt="Floral Dress">
+                    <div class="product-rating">4.5 <i class="fa-solid fa-star"></i> | 850</div>
+                </div>
+                <div class="product-details">
+                    <div class="product-brand">DressBerry</div>
+                    <div class="product-name">Women Floral Printed Midi Dress</div>
+                    <div class="product-pricing">
+                        <span class="price-current">₹999</span>
+                        <span class="price-original">₹2,299</span>
+                        <span class="price-discount">(57% OFF)</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Product Card 3 -->
+            <!-- Item 3 -->
             <div class="product-card">
-                <img src="https://via.placeholder.com/280x350/535766/ffffff?text=Sneakers" alt="Product Image" class="product-image">
-                <div class="product-info">
-                    <div class="brand-name">Puma</div>
-                    <div class="product-title">Unisex White Colorblocked Sneakers</div>
-                    <div class="price-container">
-                        <span class="current-price">₹2,499</span>
-                        <span class="original-price">₹4,999</span>
-                        <span class="discount">(50% OFF)</span>
+                <div class="product-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=500&q=80" alt="Running Shoes">
+                    <div class="product-rating">4.3 <i class="fa-solid fa-star"></i> | 3.2k</div>
+                </div>
+                <div class="product-details">
+                    <div class="product-brand">Nike</div>
+                    <div class="product-name">Unisex Air Zoom Running Shoes</div>
+                    <div class="product-pricing">
+                        <span class="price-current">₹4,295</span>
+                        <span class="price-original">₹8,995</span>
+                        <span class="price-discount">(52% OFF)</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Product Card 4 -->
+            <!-- Item 4 -->
             <div class="product-card">
-                <img src="https://via.placeholder.com/280x350/3e4152/ffffff?text=Jeans" alt="Product Image" class="product-image">
-                <div class="product-info">
-                    <div class="brand-name">HIGHLANDER</div>
-                    <div class="product-title">Men Slim Fit Denim Jeans</div>
-                    <div class="price-container">
-                        <span class="current-price">₹999</span>
-                        <span class="original-price">₹1,999</span>
-                        <span class="discount">(50% OFF)</span>
+                <div class="product-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=500&q=80" alt="Denim Jeans">
+                    <div class="product-rating">4.0 <i class="fa-solid fa-star"></i> | 620</div>
+                </div>
+                <div class="product-details">
+                    <div class="product-brand">HIGHLANDER</div>
+                    <div class="product-name">Men Slim Fit Stretchable Jeans</div>
+                    <div class="product-pricing">
+                        <span class="price-current">₹849</span>
+                        <span class="price-original">₹1,999</span>
+                        <span class="price-discount">(58% OFF)</span>
                     </div>
                 </div>
             </div>
-
         </div>
     </main>
 
-    <!-- Footer -->
+    <!-- Footer Area -->
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h4>Online Shopping</h4>
-                    <ul>
-                        <li><a href="#">Men</a></li>
-                        <li><a href="#">Women</a></li>
-                        <li><a href="#">Kids</a></li>
-                        <li><a href="#">Home & Living</a></li>
-                        <li><a href="#">Beauty</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Customer Policies</h4>
-                    <ul>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">T&C</a></li>
-                        <li><a href="#">Terms Of Use</a></li>
-                        <li><a href="#">Track Orders</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Useful Links</h4>
-                    <ul>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Site Map</a></li>
-                        <li><a href="#">Corporate Information</a></li>
-                    </ul>
-                </div>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>Online Shopping</h4>
+                <ul>
+                    <li><a href="#">Men</a></li>
+                    <li><a href="#">Women</a></li>
+                    <li><a href="#">Kids</a></li>
+                    <li><a href="#">Home & Living</a></li>
+                    <li><a href="#">Beauty</a></li>
+                    <li><a href="#">Gift Cards</a></li>
+                </ul>
             </div>
-            <div class="copyright">
-                &copy; 2026 www.myntraclone.com. All rights reserved.
+            <div class="footer-col">
+                <h4>Customer Policies</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">T&C</a></li>
+                    <li><a href="#">Terms Of Use</a></li>
+                    <li><a href="#">Track Orders</a></li>
+                    <li><a href="#">Shipping</a></li>
+                </ul>
             </div>
+            <div class="footer-col">
+                <h4>Useful Links</h4>
+                <ul>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Site Map</a></li>
+                    <li><a href="#">Corporate Information</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Experience Myntra App on Mobile</h4>
+                <p style="font-size: 13px; margin-bottom: 12px;">Search clothing, footwear, accessories & beauty products seamlessly.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 www.myntra.com. All rights reserved.
         </div>
     </footer>
 
