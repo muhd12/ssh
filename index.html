@@ -3,524 +3,265 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magical Kingdoms Resort & Theme Park</title>
-    <!-- Google Fonts for Enchanted Typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Fashion Store - Myntra Inspired</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --primary: #1a0841;
-            --secondary: #6320ee;
-            --accent: #ffd700;
-            --accent-glow: rgba(255, 215, 0, 0.4);
-            --pink: #ff3366;
-            --bg-light: #f9f8fc;
-            --text-dark: #120a2a;
-            --text-muted: #6b6382;
-            --card-bg: #ffffff;
-            --font-heading: 'Cinzel', serif;
-            --font-body: 'Plus Jakarta Sans', sans-serif;
-        }
-
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: 'Assistant', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            font-family: var(--font-body);
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            line-height: 1.6;
-            overflow-x: hidden;
+            background-color: #f5f5f6;
+            color: #282c3f;
         }
 
-        button, input {
-            font: inherit;
-        }
-
-        button {
-            cursor: pointer;
-            border: none;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        :focus-visible {
-            outline: 3px solid var(--accent);
-            outline-offset: 2px;
-        }
-
-        /* Header & Navigation */
+        /* --- Header / Navbar --- */
         header {
             position: sticky;
             top: 0;
+            background-color: #ffffff;
+            box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
             z-index: 100;
+        }
+
+        .navbar {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 16px 5vw;
-            background: rgba(26, 8, 65, 0.92);
-            backdrop-filter: blur(12px);
-            color: #fff;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
-        }
-
-        .logo {
-            font-family: var(--font-heading);
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            background: linear-gradient(135deg, #ffffff 30%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-
-        #cartBtn {
-            position: relative;
-            background: var(--accent);
-            color: var(--text-dark);
-            font-weight: 700;
-            padding: 10px 20px;
-            border-radius: 99px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 15px var(--accent-glow);
-            transition: transform 0.2s;
-        }
-
-        #cartBtn:hover {
-            transform: translateY(-2px);
-        }
-
-        #cartCount {
-            background: var(--pink);
-            color: #fff;
-            font-size: 0.75rem;
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
-        }
-
-        /* Hero Section */
-        .hero {
-            position: relative;
-            min-height: 85vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 60px 5vw;
-            background: radial-gradient(circle at center, #3c137a 0%, var(--primary) 100%);
-            color: #fff;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: url('https://images.unsplash.com/photo-1513883049090-d0b7439799bf?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-            opacity: 0.25;
-            mix-blend-mode: overlay;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-        }
-
-        .hero h1 {
-            font-family: var(--font-heading);
-            font-size: clamp(2.8rem, 6vw, 5.5rem);
-            line-height: 1.1;
-            margin-bottom: 24px;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
-        }
-
-        .hero h1 span {
-            color: var(--accent);
-        }
-
-        .hero p {
-            font-size:.1.2rem;
-            color: #ded9ed;
-            margin-bottom: 36px;
-            max-width: 600px;
-            margin-inline: auto;
-        }
-
-        .cta-btn {
-            background: linear-gradient(135deg, #ffd700 0%, #ffaa00 100%);
-            color: var(--text-dark);
-            font-weight: 700;
-            padding: 16px 36px;
-            border-radius: 99px;
-            font-size: 1.1rem;
-            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(255, 215, 0, 0.5);
-        }
-
-        /* Main Section */
-        .wrap {
-            padding: 80px 5vw;
+            height: 80px;
+            padding: 0 4%;
             max-width: 1400px;
             margin: 0 auto;
         }
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            color: #ff3f6c;
+            text-decoration: none;
+            text-transform: uppercase;
         }
 
-        .section-title h2 {
-            font-family: var(--font-heading);
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 12px;
-        }
-
-        .section-title p {
-            color: var(--text-muted);
-            font-size: 1.05rem;
-        }
-
-        /* Filter Chips */
-        .chips {
+        .nav-links {
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-bottom: 40px;
-        }
-
-        .chip {
-            padding: 10px 24px;
-            border-radius: 99px;
-            font-weight: 600;
-            background: #fff;
-            color: var(--text-muted);
-            border: 2px solid #e2dceb;
-            transition: all 0.2s;
-        }
-
-        .chip.active, .chip:hover {
-            background: var(--secondary);
-            color: #fff;
-            border-color: var(--secondary);
-            box-shadow: 0 4px 12px rgba(99, 32, 238, 0.2);
-        }
-
-        /* Product / Ticket Grid */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            list-style: none;
             gap: 30px;
         }
 
-        .card {
-            background: var(--card-bg);
-            border-radius: 24px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid #eae5f2;
-            box-shadow: 0 10px 30px rgba(26, 8, 65, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 40px rgba(26, 8, 65, 0.1);
-        }
-
-        .thumb {
-            height: 220px;
-            display: grid;
-            place-items: center;
-            font-size: 4rem;
-            position: relative;
-        }
-
-        .info {
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            flex: 1;
-        }
-
-        .tag {
-            align-self: flex-start;
-            font-size: 0.75rem;
+        .nav-links a {
+            text-decoration: none;
+            color: #282c3f;
+            font-size: 14px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            padding: 4px 12px;
-            border-radius: 99px;
-            background: #f0ebfa;
-            color: var(--secondary);
+            letter-spacing: 0.3px;
+            padding: 28px 0;
+            border-bottom: 4px solid transparent;
+            transition: border-color 0.2s;
         }
 
-        .info h3 {
-            font-family: var(--font-heading);
-            font-size: 1.3rem;
-            color: var(--primary);
+        .nav-links a:hover {
+            border-bottom-color: #ff3f6c;
         }
 
-        .description {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            flex: 1;
-        }
-
-        .price-row {
+        .search-bar {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            margin-top: 16px;
-            padding-top: 16px;
-            border-top: 1px solid #f0ebfa;
+            background-color: #f5f5f6;
+            padding: 8px 14px;
+            border-radius: 4px;
+            width: 30%;
         }
 
-        .price {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--primary);
+        .search-bar i {
+            color: #696e79;
+            margin-right: 10px;
         }
 
-        .add-btn {
-            padding: 10px 20px;
-            border-radius: 12px;
-            font-weight: 600;
-            color: #fff;
-            background: var(--secondary);
-            transition: background 0.2s;
+        .search-bar input {
+            border: none;
+            outline: none;
+            background: transparent;
+            width: 100%;
+            font-size: 14px;
         }
 
-        .add-btn:hover {
-            background: var(--primary);
+        .user-actions {
+            display: flex;
+            gap: 24px;
         }
 
-        /* Cart Drawer */
-        #overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(18, 10, 42, 0.6);
-            backdrop-filter: blur(4px);
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s;
-            z-index: 200;
-        }
-
-        #overlay.open {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        aside {
-            position: fixed;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            width: min(420px, 100%);
-            background: #fff;
-            z-index: 210;
-            transform: translateX(100%);
-            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        .action-item {
             display: flex;
             flex-direction: column;
-            box-shadow: -10px 0 30px rgba(0,0,0,0.15);
-        }
-
-        aside.open {
-            transform: none;
-        }
-
-        aside header {
-            position: static;
-            background: var(--primary);
-            color: #fff;
-            padding: 24px;
-            justify-content: space-between;
-            border-bottom: none;
-        }
-
-        aside h2 {
-            font-family: var(--font-heading);
-        }
-
-        #closeBtn {
-            background: rgba(255,255,255,0.1);
-            color: #fff;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
-            font-size: 1.1rem;
-            transition: background 0.2s;
-        }
-
-        #closeBtn:hover {
-            background: rgba(255,255,255,0.2);
-        }
-
-        #items {
-            flex: 1;
-            overflow-y: auto;
-            padding: 20px;
-        }
-
-        .cart-row {
-            display: flex;
             align-items: center;
-            gap: 16px;
-            padding: 16px 0;
-            border-bottom: 1px solid #f0ebfa;
+            text-decoration: none;
+            color: #282c3f;
+            font-size: 12px;
+            font-weight: 700;
         }
 
-        .cart-row .emoji {
-            font-size: 2rem;
-            width: 56px;
-            height: 56px;
-            background: #f0ebfa;
-            border-radius: 14px;
-            display: grid;
-            place-items: center;
-            flex-shrink: 0;
-        }
-
-        .cart-details {
-            flex: 1;
-        }
-
-        .cart-details h4 {
-            font-size: 1rem;
-            color: var(--primary);
+        .action-item i {
+            font-size: 18px;
             margin-bottom: 4px;
         }
 
-        .qty-controls {
+        /* --- Hero Banner --- */
+        .hero-banner {
+            width: 100%;
+            margin-bottom: 40px;
+        }
+
+        .hero-banner img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* --- Main Content Layout --- */
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #3e4152;
+            margin: 40px 0 30px 0;
+        }
+
+        /* --- Product Grid --- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .product-card {
+            background: #ffffff;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease, transform 0.2s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 12px 16px;
+        }
+
+        .brand-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: #282c3f;
+            margin-bottom: 4px;
+        }
+
+        .product-title {
+            font-size: 14px;
+            color: #535766;
+            font-weight: 400;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 8px;
+        }
+
+        .price-container {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-top: 8px;
+            gap: 8px;
         }
 
-        .qty-controls button {
-            width: 26px;
-            height: 26px;
-            border-radius: 50%;
-            background: #f0ebfa;
-            color: var(--primary);
+        .current-price {
+            font-size: 14px;
+            font-weight: 700;
+            color: #282c3f;
+        }
+
+        .original-price {
+            font-size: 12px;
+            color: #7e818c;
+            text-decoration: line-through;
+        }
+
+        .discount {
+            font-size: 12px;
+            color: #ff905a;
             font-weight: 700;
         }
 
-        .remove-item {
-            background: none;
-            color: var(--pink);
-            font-weight: 600;
-            font-size: 0.85rem;
-        }
-
-        .cart-foot {
-            padding: 24px;
-            border-top: 1px solid #f0ebfa;
-            background: #faf8ff;
-        }
-
-        .total-section {
-            display: flex;
-            justify-content: space-between;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-
-        .checkout-btn {
-            width: 100%;
-            padding: 16px;
-            border-radius: 16px;
-            background: var(--pink);
-            color: #fff;
-            font-weight: 700;
-            font-size: 1.05rem;
-            box-shadow: 0 6px 20px rgba(255, 51, 102, 0.3);
-            transition: opacity 0.2s;
-        }
-
-        .checkout-btn:hover {
-            opacity: 0.9;
-        }
-
-        /* Toast Notification */
-        #toast {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translate(-50%, 100px);
-            background: var(--primary);
-            color: #fff;
-            padding: 14px 28px;
-            border-radius: 99px;
-            font-weight: 600;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            z-index: 300;
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid rgba(255,215,0,0.3);
-        }
-
-        #toast.show {
-            transform: translate(-50%, 0);
-        }
-
-        /* Footer */
+        /* --- Footer --- */
         footer {
-            background: var(--primary);
-            color: #ded9ed;
-            text-align: center;
-            padding: 40px 5vw;
-            border-top: 1px solid rgba(255,215,0,0.1);
+            background-color: #fafbfc;
+            padding: 40px 0 20px 0;
+            border-top: 1px solid #eaeaec;
+            margin-top: 60px;
         }
 
-        footer p {
-            font-size: 0.95rem;
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
         }
 
-        .empty-cart {
+        .footer-column h4 {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #282c3f;
+            margin-bottom: 16px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-column ul li a {
+            text-decoration: none;
+            color: #696e79;
+            font-size: 14px;
+        }
+
+        .copyright {
             text-align: center;
-            color: var(--text-muted);
-            padding: 40px 0;
+            color: #94969f;
+            font-size: 12px;
+            padding-top: 20px;
+            border-top: 1px solid #eaeaec;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 900px) {
+            .nav-links, .search-bar {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -528,212 +269,150 @@
 
     <!-- Header Navigation -->
     <header>
-        <div class="logo">✨ Magical Kingdoms</div>
-        <ul class="nav-links">
-            <li><a href="#experiences">Experiences</a></li>
-            <li><a href="#parks">The Parks</a></li>
-            <li><a href="#offers">Special Offers</a></li>
-        </ul>
-        <button id="cartBtn" aria-label="Open pass cart">
-            <span>Passes</span>
-            <span id="cartCount">0</span>
-        </button>
+        <div class="navbar">
+            <a href="#" class="logo">MYNTRA</a>
+            
+            <ul class="nav-links">
+                <li><a href="#">Men</a></li>
+                <li><a href="#">Women</a></li>
+                <li><a href="#">Kids</a></li>
+                <li><a href="#">Home & Living</a></li>
+                <li><a href="#">Beauty</a></li>
+            </ul>
+
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Search for products, brands and more">
+            </div>
+
+            <div class="user-actions">
+                <a href="#" class="action-item">
+                    <i class="fa-regular fa-user"></i>
+                    <span>Profile</span>
+                </a>
+                <a href="#" class="action-item">
+                    <i class="fa-regular fa-heart"></i>
+                    <span>Wishlist</span>
+                </a>
+                <a href="#" class="action-item">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span>Bag</span>
+                </a>
+            </div>
+        </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Where Dreams Come <span>Alive</span></h1>
-            <p>Step into a world of enchantment, legendary attractions, and unforgettable pixie dust moments for the whole family.</p>
-            <button class="cta-btn" onclick="document.getElementById('experiences').scrollIntoView({behavior: 'smooth'})">Explore Attractions</button>
-        </div>
+    <!-- Main Hero Banner -->
+    <section class="hero-banner">
+        <img src="https://via.placeholder.com/1400x400/ff3f6c/ffffff?text=FLAT+50%25+OFF+-+BIG+FASHION+FESTIVAL" alt="Sale Banner">
     </section>
 
-    <!-- Main Content Grid -->
-    <main class="wrap" id="experiences">
-        <div class="section-title">
-            <h2>Magical Adventures & Passes</h2>
-            <p>Choose your entry passes, VIP experiences, and legendary dining treats.</p>
-        </div>
+    <!-- Main Content Container -->
+    <main class="container">
 
-        <div class="chips" id="chipsContainer"></div>
-        <div class="grid" id="productGrid"></div>
+        <h2 class="section-title">Trending In Fashion</h2>
+
+        <!-- Product Grid -->
+        <div class="product-grid">
+
+            <!-- Product Card 1 -->
+            <div class="product-card">
+                <img src="https://via.placeholder.com/280x350/282c3f/ffffff?text=Shirt" alt="Product Image" class="product-image">
+                <div class="product-info">
+                    <div class="brand-name">Roadster</div>
+                    <div class="product-title">Men Pure Cotton Casual Shirt</div>
+                    <div class="price-container">
+                        <span class="current-price">₹699</span>
+                        <span class="original-price">₹1,399</span>
+                        <span class="discount">(50% OFF)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 2 -->
+            <div class="product-card">
+                <img src="https://via.placeholder.com/280x350/ff3f6c/ffffff?text=Dress" alt="Product Image" class="product-image">
+                <div class="product-info">
+                    <div class="brand-name">DressBerry</div>
+                    <div class="product-title">Women Floral A-Line Dress</div>
+                    <div class="price-container">
+                        <span class="current-price">₹899</span>
+                        <span class="original-price">₹1,799</span>
+                        <span class="discount">(50% OFF)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 3 -->
+            <div class="product-card">
+                <img src="https://via.placeholder.com/280x350/535766/ffffff?text=Sneakers" alt="Product Image" class="product-image">
+                <div class="product-info">
+                    <div class="brand-name">Puma</div>
+                    <div class="product-title">Unisex White Colorblocked Sneakers</div>
+                    <div class="price-container">
+                        <span class="current-price">₹2,499</span>
+                        <span class="original-price">₹4,999</span>
+                        <span class="discount">(50% OFF)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 4 -->
+            <div class="product-card">
+                <img src="https://via.placeholder.com/280x350/3e4152/ffffff?text=Jeans" alt="Product Image" class="product-image">
+                <div class="product-info">
+                    <div class="brand-name">HIGHLANDER</div>
+                    <div class="product-title">Men Slim Fit Denim Jeans</div>
+                    <div class="price-container">
+                        <span class="current-price">₹999</span>
+                        <span class="original-price">₹1,999</span>
+                        <span class="discount">(50% OFF)</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </main>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Magical Kingdoms Resort & Entertainment. All rights reserved. Made with CSS, HTML & JavaScript.</p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>Online Shopping</h4>
+                    <ul>
+                        <li><a href="#">Men</a></li>
+                        <li><a href="#">Women</a></li>
+                        <li><a href="#">Kids</a></li>
+                        <li><a href="#">Home & Living</a></li>
+                        <li><a href="#">Beauty</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Customer Policies</h4>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">T&C</a></li>
+                        <li><a href="#">Terms Of Use</a></li>
+                        <li><a href="#">Track Orders</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Useful Links</h4>
+                    <ul>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Site Map</a></li>
+                        <li><a href="#">Corporate Information</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2026 www.myntraclone.com. All rights reserved.
+            </div>
+        </div>
     </footer>
 
-    <!-- Cart Overlay & Drawer -->
-    <div id="overlay"></div>
-    <aside id="cartDrawer" aria-label="Shopping Cart">
-        <header>
-            <h2>Your Magical Cart</h2>
-            <button id="closeBtn" aria-label="Close cart">✕</button>
-        </header>
-        <div id="items"></div>
-        <div class="cart-foot">
-            <div class="total-section">
-                <span>Total Amount</span>
-                <span id="cartTotal">₹0</span>
-            </div>
-            <button class="checkout-btn" id="checkoutBtn">Proceed to Magical Checkout</button>
-        </div>
-    </aside>
-
-    <!-- Toast Notification -->
-    <div id="toast" role="status"></div>
-
-    <script>
-        const CURRENCY = '₹';
-        
-        // Attraction & Pass Database
-        const products = [
-            { id: 1, name: 'Royal Kingdom 1-Day Pass', cat: 'Theme Parks', price: 3499, emoji: '🏰', desc: 'Full access to all magical realms, character meet & greets, and fireworks show.' },
-            { id: 2, name: 'Lightning Lane Multi-Pass', cat: 'Upgrades', price: 1799, emoji: '⚡', desc: 'Skip the standby lines at your favorite iconic attractions and thrill rides.' },
-            { id: 3, name: 'Pixie Dust Magic Ears', cat: 'Merchandise', price: 1299, emoji: '✨', desc: 'Limited edition light-up glowing Mickey ears with customized color modes.' },
-            { id: 4, name: 'Enchanted Castle Dining Experience', cat: 'Dining', price: 4299, emoji: '👑', desc: 'A 3-course royal feast inside the Grand Crystal Dining Hall with fairytale guests.' },
-            { id: 5, name: 'Adventure Valley Safari Ticket', cat: 'Theme Parks', price: 2999, emoji: '🦁', desc: 'Explore untamed wilderness trails, roaring rapids, and exotic wildlife expeditions.' },
-            { id: 6, name: 'Galactic Starcruiser Voyage', cat: 'Theme Parks', price: 5499, emoji: '🚀', desc: 'An immersive intergalactic simulator experience across distant star systems.' },
-            { id: 7, name: 'Mickey’s Gourmet Treat Box', cat: 'Dining', price: 899, emoji: '🍪', desc: 'Freshly baked handcrafted character cookies, caramel apples, and sweet pastries.' },
-            { id: 8, name: 'VIP Fireworks Viewing Party', cat: 'Upgrades', price: 2499, emoji: '🎆', desc: 'Exclusive front-row castle viewing area with dessert buffets and sparkling beverages.' }
-        ];
-
-        let currentCategory = 'All';
-        let cart = {};
-
-        const formatMoney = (amount) => CURRENCY + amount.toLocaleString('en-IN');
-
-        // Render Category Filter Chips
-        function renderChips() {
-            const categories = ['All', ...new Set(products.map(p => p.cat))];
-            const container = document.getElementById('chipsContainer');
-            container.innerHTML = categories.map(cat => `
-                <button class="chip ${cat === currentCategory ? 'active' : ''}" data-cat="${cat}">${cat}</button>
-            `).join('');
-        }
-
-        // Render Product Cards
-        function renderGrid() {
-            const filtered = currentCategory === 'All' 
-                ? products 
-                : products.filter(p => p.cat === currentCategory);
-
-            const grid = document.getElementById('productGrid');
-            grid.innerHTML = filtered.map(p => `
-                <article class="card">
-                    <div class="thumb">${p.emoji}</div>
-                    <div class="info">
-                        <span class="tag">${p.cat}</span>
-                        <h3>${p.name}</h3>
-                        <p class="description">${p.desc}</p>
-                        <div class="price-row">
-                            <span class="price">${formatMoney(p.price)}</span>
-                            <button class="add-btn" data-id="${p.id}">Add to Cart</button>
-                        </div>
-                    </div>
-                </article>
-            `).join('');
-        }
-
-        // Render Cart Drawer Content
-        function renderCart() {
-            const ids = Object.keys(cart);
-            const totalCount = ids.reduce((sum, id) => sum + cart[id], 0);
-            const totalPrice = ids.reduce((sum, id) => {
-                const item = products.find(p => p.id == id);
-                return sum + (item.price * cart[id]);
-            }, 0);
-
-            document.getElementById('cartCount').textContent = totalCount;
-            document.getElementById('cartTotal').textContent = formatMoney(totalPrice);
-
-            const itemsContainer = document.getElementById('items');
-            itemsContainer.innerHTML = ids.length ? ids.map(id => {
-                const p = products.find(x => x.id == id);
-                return `
-                    <div class="cart-row">
-                        <div class="emoji">${p.emoji}</div>
-                        <div class="cart-details">
-                            <h4>${p.name}</h4>
-                            <div>${formatMoney(p.price)}</div>
-                            <div class="qty-controls">
-                                <button data-dec="${id}">−</button>
-                                <span>${cart[id]}</span>
-                                <button data-inc="${id}">+</button>
-                            </div>
-                        </div>
-                        <button class="remove-item" data-rm="${id}">Remove</button>
-                    </div>
-                `;
-            }).join('') : '<p class="empty-cart">Your cart is empty. Add a magical experience!</p>';
-        }
-
-        // Toast feedback trigger
-        function showToast(msg) {
-            const toast = document.getElementById('toast');
-            toast.textContent = msg;
-            toast.classList.add('show');
-            clearTimeout(toast.timer);
-            toast.timer = setTimeout(() => {
-                toast.classList.remove('show');
-            }, 2000);
-        }
-
-        // Open/Close Cart Drawer
-        function toggleCart(isOpen) {
-            document.getElementById('cartDrawer').classList.toggle('open', isOpen);
-            document.getElementById('overlay').classList.toggle('open', isOpen);
-        }
-
-        // Event Listeners
-        document.getElementById('chipsContainer').addEventListener('click', e => {
-            if (e.target.dataset.cat) {
-                currentCategory = e.target.dataset.cat;
-                renderChips();
-                renderGrid();
-            }
-        });
-
-        document.getElementById('productGrid').addEventListener('click', e => {
-            const id = e.target.dataset.id;
-            if (id) {
-                cart[id] = (cart[id] || 0) + 1;
-                renderCart();
-                showToast('✨ Added to your magical cart!');
-            }
-        });
-
-        document.getElementById('items').addEventListener('click', e => {
-            const dataset = e.target.dataset;
-            if (dataset.inc) cart[dataset.inc]++;
-            if (dataset.dec) {
-                cart[dataset.dec]--;
-                if (cart[dataset.dec] <= 0) delete cart[dataset.dec];
-            }
-            if (dataset.rm) delete cart[dataset.rm];
-            renderCart();
-        });
-
-        document.getElementById('cartBtn').onclick = () => toggleCart(true);
-        document.getElementById('closeBtn').onclick = document.getElementById('overlay').onclick = () => toggleCart(false);
-
-        document.getElementById('checkoutBtn').onclick = () => {
-            if (!Object.keys(cart).length) {
-                showToast('Your cart is empty!');
-                return;
-            }
-            cart = {};
-            renderCart();
-            toggleCart(false);
-            showToast('🎉 Order confirmed! Have a magical visit!');
-        };
-
-        // Initial Initialization
-        renderChips();
-        renderGrid();
-        renderCart();
-    </script>
 </body>
 </html>
