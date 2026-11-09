@@ -1,226 +1,739 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Gumdrop Shop</title>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --pink:#ff4f8b; --yellow:#ffd23f; --teal:#1ec8b0; --blue:#3a6bff; --purple:#8a4fff; --orange:#ff8a3d;
-  --ink:#1f1b3a; --paper:#fff9ef; --card:#ffffff;
-  --head:'Fredoka','Trebuchet MS',sans-serif; --body:'DM Sans','Segoe UI',sans-serif;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.5}
-button,input{font:inherit}
-button{cursor:pointer;border:none}
-:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magical Kingdoms Resort & Theme Park</title>
+    <!-- Google Fonts for Enchanted Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a0841;
+            --secondary: #6320ee;
+            --accent: #ffd700;
+            --accent-glow: rgba(255, 215, 0, 0.4);
+            --pink: #ff3366;
+            --bg-light: #f9f8fc;
+            --text-dark: #120a2a;
+            --text-muted: #6b6382;
+            --card-bg: #ffffff;
+            --font-heading: 'Cinzel', serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+        }
 
-/* Header */
-header{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:16px;padding:12px 5vw;background:var(--ink);color:#fff}
-.logo{font-family:var(--head);font-size:1.6rem;font-weight:700;letter-spacing:.5px}
-.logo span:nth-child(1){color:var(--pink)}.logo span:nth-child(2){color:var(--yellow)}.logo span:nth-child(3){color:var(--teal)}
-#search{flex:1;max-width:420px;margin-left:auto;padding:10px 16px;border-radius:99px;border:none;background:#fff;color:var(--ink)}
-#cartBtn{position:relative;background:var(--yellow);color:var(--ink);font-weight:700;padding:10px 18px;border-radius:99px}
-#cartCount{position:absolute;top:-8px;right:-6px;min-width:24px;height:24px;border-radius:50%;background:var(--pink);color:#fff;font-size:.8rem;display:grid;place-items:center}
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-/* Hero */
-.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center;padding:56px 5vw;background:linear-gradient(120deg,var(--purple),var(--pink) 60%,var(--orange));color:#fff;overflow:hidden}
-.hero h1{font-family:var(--head);font-size:clamp(2.4rem,6vw,4.4rem);line-height:1.05}
-.hero p{margin:16px 0 24px;max-width:46ch;font-size:1.1rem}
-.cta{background:var(--yellow);color:var(--ink);font-weight:700;padding:14px 28px;border-radius:99px;font-size:1.05rem;box-shadow:0 5px 0 rgba(0,0,0,.25);transition:transform .1s}
-.cta:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.25)}
-.blobs{position:relative;height:260px}
-.blobs i{position:absolute;display:grid;place-items:center;font-style:normal;font-size:3.4rem;border-radius:50%;box-shadow:0 8px 0 rgba(0,0,0,.15)}
-.blobs i:nth-child(1){width:150px;height:150px;background:var(--yellow);left:8%;top:10%}
-.blobs i:nth-child(2){width:120px;height:120px;background:var(--teal);right:10%;top:0}
-.blobs i:nth-child(3){width:130px;height:130px;background:var(--blue);left:38%;bottom:0}
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-/* Shop */
-.wrap{padding:40px 5vw 60px}
-.wrap h2{font-family:var(--head);font-size:2rem;margin-bottom:16px}
-.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
-.chip{padding:8px 18px;border-radius:99px;font-weight:700;background:#fff;color:var(--ink);border:3px solid var(--ink)}
-.chip.active{background:var(--ink);color:#fff}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:24px}
-.card{background:var(--card);border:3px solid var(--ink);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;box-shadow:6px 6px 0 var(--ink)}
-.thumb{height:170px;display:grid;place-items:center;font-size:5rem}
-.info{padding:16px;display:flex;flex-direction:column;gap:6px;flex:1}
-.info h3{font-family:var(--head);font-size:1.2rem}
-.tag{align-self:flex-start;font-size:.78rem;font-weight:700;padding:2px 10px;border-radius:99px;color:#fff}
-.price{font-size:1.2rem;font-weight:700}
-.add{margin-top:auto;padding:10px;border-radius:12px;font-weight:700;color:#fff;background:var(--blue)}
-.add:hover{background:var(--purple)}
-.empty{grid-column:1/-1;text-align:center;padding:40px;font-size:1.1rem}
+        button, input {
+            font: inherit;
+        }
 
-/* Cart drawer */
-#overlay{position:fixed;inset:0;background:rgba(31,27,58,.55);opacity:0;pointer-events:none;transition:opacity .2s;z-index:30}
-#overlay.open{opacity:1;pointer-events:auto}
-aside{position:fixed;top:0;right:0;bottom:0;width:min(400px,100%);background:#fff;z-index:40;transform:translateX(100%);transition:transform .25s;display:flex;flex-direction:column}
-aside.open{transform:none}
-aside header{position:static;justify-content:space-between;background:var(--teal);color:var(--ink)}
-aside h2{font-family:var(--head)}
-#close{background:var(--ink);color:#fff;width:36px;height:36px;border-radius:50%}
-#items{flex:1;overflow-y:auto;padding:16px}
-.row{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:2px dashed #ddd}
-.row .em{font-size:2rem;width:56px;height:56px;display:grid;place-items:center;border-radius:14px;flex-shrink:0}
-.row .t{flex:1}
-.qty{display:flex;align-items:center;gap:8px;margin-top:4px}
-.qty button{width:28px;height:28px;border-radius:50%;background:var(--yellow);font-weight:700}
-.rm{background:none;color:var(--pink);font-weight:700}
-.foot{padding:16px;border-top:3px solid var(--ink)}
-.total{display:flex;justify-content:space-between;font-size:1.3rem;font-weight:700;margin-bottom:12px}
-.checkout{width:100%;padding:14px;border-radius:14px;background:var(--pink);color:#fff;font-weight:700;font-size:1.05rem}
+        button {
+            cursor: pointer;
+            border: none;
+        }
 
-#toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,120px);background:var(--ink);color:#fff;padding:12px 22px;border-radius:99px;z-index:50;transition:transform .25s}
-#toast.show{transform:translate(-50%,0)}
-footer{background:var(--ink);color:#fff;text-align:center;padding:24px}
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-@media(max-width:700px){.hero{grid-template-columns:1fr}.blobs{display:none}}
-@media(prefers-reduced-motion:reduce){*{transition:none!important}}
-</style>
+        :focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 5vw;
+            background: rgba(26, 8, 65, 0.92);
+            backdrop-filter: blur(12px);
+            color: #fff;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, #ffffff 30%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        #cartBtn {
+            position: relative;
+            background: var(--accent);
+            color: var(--text-dark);
+            font-weight: 700;
+            padding: 10px 20px;
+            border-radius: 99px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px var(--accent-glow);
+            transition: transform 0.2s;
+        }
+
+        #cartBtn:hover {
+            transform: translateY(-2px);
+        }
+
+        #cartCount {
+            background: var(--pink);
+            color: #fff;
+            font-size: 0.75rem;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 5vw;
+            background: radial-gradient(circle at center, #3c137a 0%, var(--primary) 100%);
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1513883049090-d0b7439799bf?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            opacity: 0.25;
+            mix-blend-mode: overlay;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.8rem, 6vw, 5.5rem);
+            line-height: 1.1;
+            margin-bottom: 24px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero p {
+            font-size:.1.2rem;
+            color: #ded9ed;
+            margin-bottom: 36px;
+            max-width: 600px;
+            margin-inline: auto;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, #ffd700 0%, #ffaa00 100%);
+            color: var(--text-dark);
+            font-weight: 700;
+            padding: 16px 36px;
+            border-radius: 99px;
+            font-size: 1.1rem;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Main Section */
+        .wrap {
+            padding: 80px 5vw;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* Filter Chips */
+        .chips {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .chip {
+            padding: 10px 24px;
+            border-radius: 99px;
+            font-weight: 600;
+            background: #fff;
+            color: var(--text-muted);
+            border: 2px solid #e2dceb;
+            transition: all 0.2s;
+        }
+
+        .chip.active, .chip:hover {
+            background: var(--secondary);
+            color: #fff;
+            border-color: var(--secondary);
+            box-shadow: 0 4px 12px rgba(99, 32, 238, 0.2);
+        }
+
+        /* Product / Ticket Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #eae5f2;
+            box-shadow: 0 10px 30px rgba(26, 8, 65, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(26, 8, 65, 0.1);
+        }
+
+        .thumb {
+            height: 220px;
+            display: grid;
+            place-items: center;
+            font-size: 4rem;
+            position: relative;
+        }
+
+        .info {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .tag {
+            align-self: flex-start;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 4px 12px;
+            border-radius: 99px;
+            background: #f0ebfa;
+            color: var(--secondary);
+        }
+
+        .info h3 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+
+        .description {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            flex: 1;
+        }
+
+        .price-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #f0ebfa;
+        }
+
+        .price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .add-btn {
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            color: #fff;
+            background: var(--secondary);
+            transition: background 0.2s;
+        }
+
+        .add-btn:hover {
+            background: var(--primary);
+        }
+
+        /* Cart Drawer */
+        #overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(18, 10, 42, 0.6);
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            z-index: 200;
+        }
+
+        #overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        aside {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: min(420px, 100%);
+            background: #fff;
+            z-index: 210;
+            transform: translateX(100%);
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.15);
+        }
+
+        aside.open {
+            transform: none;
+        }
+
+        aside header {
+            position: static;
+            background: var(--primary);
+            color: #fff;
+            padding: 24px;
+            justify-content: space-between;
+            border-bottom: none;
+        }
+
+        aside h2 {
+            font-family: var(--font-heading);
+        }
+
+        #closeBtn {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-size: 1.1rem;
+            transition: background 0.2s;
+        }
+
+        #closeBtn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        #items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .cart-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid #f0ebfa;
+        }
+
+        .cart-row .emoji {
+            font-size: 2rem;
+            width: 56px;
+            height: 56px;
+            background: #f0ebfa;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+        }
+
+        .cart-details {
+            flex: 1;
+        }
+
+        .cart-details h4 {
+            font-size: 1rem;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .qty-controls button {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: #f0ebfa;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .remove-item {
+            background: none;
+            color: var(--pink);
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .cart-foot {
+            padding: 24px;
+            border-top: 1px solid #f0ebfa;
+            background: #faf8ff;
+        }
+
+        .total-section {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 16px;
+            border-radius: 16px;
+            background: var(--pink);
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.05rem;
+            box-shadow: 0 6px 20px rgba(255, 51, 102, 0.3);
+            transition: opacity 0.2s;
+        }
+
+        .checkout-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Toast Notification */
+        #toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translate(-50%, 100px);
+            background: var(--primary);
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 99px;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 300;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255,215,0,0.3);
+        }
+
+        #toast.show {
+            transform: translate(-50%, 0);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: #ded9ed;
+            text-align: center;
+            padding: 40px 5vw;
+            border-top: 1px solid rgba(255,215,0,0.1);
+        }
+
+        footer p {
+            font-size: 0.95rem;
+        }
+
+        .empty-cart {
+            text-align: center;
+            color: var(--text-muted);
+            padding: 40px 0;
+        }
+    </style>
 </head>
 <body>
 
-<header>
-  <div class="logo"><span>Gum</span><span>drop</span><span>Shop</span></div>
-  <input id="search" type="search" placeholder="Search products" aria-label="Search products">
-  <button id="cartBtn" aria-label="Open cart">Cart <span id="cartCount">0</span></button>
-</header>
+    <!-- Header Navigation -->
+    <header>
+        <div class="logo">✨ Magical Kingdoms</div>
+        <ul class="nav-links">
+            <li><a href="#experiences">Experiences</a></li>
+            <li><a href="#parks">The Parks</a></li>
+            <li><a href="#offers">Special Offers</a></li>
+        </ul>
+        <button id="cartBtn" aria-label="Open pass cart">
+            <span>Passes</span>
+            <span id="cartCount">0</span>
+        </button>
+    </header>
 
-<section class="hero">
-  <div>
-    <h1>Bright things for everyday life</h1>
-    <p>Sneakers, bags, headphones and more, all in colors that wake you up. Free delivery on orders over 2,000.</p>
-    <button class="cta" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">Shop now</button>
-  </div>
-  <div class="blobs" aria-hidden="true"><i>👟</i><i>🎧</i><i>🎒</i></div>
-</section>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Where Dreams Come <span>Alive</span></h1>
+            <p>Step into a world of enchantment, legendary attractions, and unforgettable pixie dust moments for the whole family.</p>
+            <button class="cta-btn" onclick="document.getElementById('experiences').scrollIntoView({behavior: 'smooth'})">Explore Attractions</button>
+        </div>
+    </section>
 
-<main class="wrap" id="shop">
-  <h2>All products</h2>
-  <div class="chips" id="chips"></div>
-  <div class="grid" id="grid"></div>
-</main>
+    <!-- Main Content Grid -->
+    <main class="wrap" id="experiences">
+        <div class="section-title">
+            <h2>Magical Adventures & Passes</h2>
+            <p>Choose your entry passes, VIP experiences, and legendary dining treats.</p>
+        </div>
 
-<footer>© 2026 Gumdrop Shop. Made with HTML, CSS and JavaScript.</footer>
+        <div class="chips" id="chipsContainer"></div>
+        <div class="grid" id="productGrid"></div>
+    </main>
 
-<div id="overlay"></div>
-<aside id="drawer" aria-label="Shopping cart">
-  <header><h2>Your cart</h2><button id="close" aria-label="Close cart">✕</button></header>
-  <div id="items"></div>
-  <div class="foot">
-    <div class="total"><span>Total</span><span id="total">0</span></div>
-    <button class="checkout" id="checkout">Place order</button>
-  </div>
-</aside>
-<div id="toast" role="status"></div>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Magical Kingdoms Resort & Entertainment. All rights reserved. Made with CSS, HTML & JavaScript.</p>
+    </footer>
 
-<script>
-const CURRENCY = '₹';
-const COLORS = { Shoes:'#ff4f8b', Audio:'#3a6bff', Bags:'#1ec8b0', Home:'#ff8a3d', Wear:'#8a4fff' };
-const TINTS  = { Shoes:'#ffe0ec', Audio:'#dfe7ff', Bags:'#d6f7f2', Home:'#ffe8d6', Wear:'#ece0ff' };
+    <!-- Cart Overlay & Drawer -->
+    <div id="overlay"></div>
+    <aside id="cartDrawer" aria-label="Shopping Cart">
+        <header>
+            <h2>Your Magical Cart</h2>
+            <button id="closeBtn" aria-label="Close cart">✕</button>
+        </header>
+        <div id="items"></div>
+        <div class="cart-foot">
+            <div class="total-section">
+                <span>Total Amount</span>
+                <span id="cartTotal">₹0</span>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn">Proceed to Magical Checkout</button>
+        </div>
+    </aside>
 
-const products = [
-  { id:1,  name:'Cloud Runner Sneakers', cat:'Shoes', price:3499, emoji:'👟' },
-  { id:2,  name:'Neon Slides',           cat:'Shoes', price:1199, emoji:'🩴' },
-  { id:3,  name:'Pop Wireless Headphones',cat:'Audio', price:2999, emoji:'🎧' },
-  { id:4,  name:'Mini Bluetooth Speaker',cat:'Audio', price:1799, emoji:'🔊' },
-  { id:5,  name:'Day Trip Backpack',     cat:'Bags',  price:1999, emoji:'🎒' },
-  { id:6,  name:'Candy Tote Bag',        cat:'Bags',  price:899,  emoji:'👜' },
-  { id:7,  name:'Sunny Water Bottle',    cat:'Home',  price:649,  emoji:'🧴' },
-  { id:8,  name:'Glow Desk Lamp',        cat:'Home',  price:1499, emoji:'💡' },
-  { id:9,  name:'Cozy Hoodie',           cat:'Wear',  price:2299, emoji:'🧥' },
-  { id:10, name:'Rainbow Cap',           cat:'Wear',  price:599,  emoji:'🧢' },
-  { id:11, name:'Round Sunglasses',      cat:'Wear',  price:999,  emoji:'🕶️' },
-  { id:12, name:'Smart Watch Lite',      cat:'Audio', price:3999, emoji:'⌚' }
-];
+    <!-- Toast Notification -->
+    <div id="toast" role="status"></div>
 
-let category = 'All', query = '';
-let cart = {}; // { productId: quantity }
+    <script>
+        const CURRENCY = '₹';
+        
+        // Attraction & Pass Database
+        const products = [
+            { id: 1, name: 'Royal Kingdom 1-Day Pass', cat: 'Theme Parks', price: 3499, emoji: '🏰', desc: 'Full access to all magical realms, character meet & greets, and fireworks show.' },
+            { id: 2, name: 'Lightning Lane Multi-Pass', cat: 'Upgrades', price: 1799, emoji: '⚡', desc: 'Skip the standby lines at your favorite iconic attractions and thrill rides.' },
+            { id: 3, name: 'Pixie Dust Magic Ears', cat: 'Merchandise', price: 1299, emoji: '✨', desc: 'Limited edition light-up glowing Mickey ears with customized color modes.' },
+            { id: 4, name: 'Enchanted Castle Dining Experience', cat: 'Dining', price: 4299, emoji: '👑', desc: 'A 3-course royal feast inside the Grand Crystal Dining Hall with fairytale guests.' },
+            { id: 5, name: 'Adventure Valley Safari Ticket', cat: 'Theme Parks', price: 2999, emoji: '🦁', desc: 'Explore untamed wilderness trails, roaring rapids, and exotic wildlife expeditions.' },
+            { id: 6, name: 'Galactic Starcruiser Voyage', cat: 'Theme Parks', price: 5499, emoji: '🚀', desc: 'An immersive intergalactic simulator experience across distant star systems.' },
+            { id: 7, name: 'Mickey’s Gourmet Treat Box', cat: 'Dining', price: 899, emoji: '🍪', desc: 'Freshly baked handcrafted character cookies, caramel apples, and sweet pastries.' },
+            { id: 8, name: 'VIP Fireworks Viewing Party', cat: 'Upgrades', price: 2499, emoji: '🎆', desc: 'Exclusive front-row castle viewing area with dessert buffets and sparkling beverages.' }
+        ];
 
-const $ = id => document.getElementById(id);
-const money = n => CURRENCY + n.toLocaleString('en-IN');
+        let currentCategory = 'All';
+        let cart = {};
 
-function renderChips(){
-  const cats = ['All', ...new Set(products.map(p => p.cat))];
-  $('chips').innerHTML = cats.map(c =>
-    `<button class="chip ${c===category?'active':''}" data-cat="${c}">${c}</button>`).join('');
-}
+        const formatMoney = (amount) => CURRENCY + amount.toLocaleString('en-IN');
 
-function renderGrid(){
-  const list = products.filter(p =>
-    (category==='All' || p.cat===category) &&
-    p.name.toLowerCase().includes(query.toLowerCase()));
-  $('grid').innerHTML = list.length ? list.map(p => `
-    <article class="card">
-      <div class="thumb" style="background:${TINTS[p.cat]}">${p.emoji}</div>
-      <div class="info">
-        <span class="tag" style="background:${COLORS[p.cat]}">${p.cat}</span>
-        <h3>${p.name}</h3>
-        <div class="price">${money(p.price)}</div>
-        <button class="add" data-id="${p.id}">Add to cart</button>
-      </div>
-    </article>`).join('')
-    : '<p class="empty">No products match your search. Try a different word.</p>';
-}
+        // Render Category Filter Chips
+        function renderChips() {
+            const categories = ['All', ...new Set(products.map(p => p.cat))];
+            const container = document.getElementById('chipsContainer');
+            container.innerHTML = categories.map(cat => `
+                <button class="chip ${cat === currentCategory ? 'active' : ''}" data-cat="${cat}">${cat}</button>
+            `).join('');
+        }
 
-function renderCart(){
-  const ids = Object.keys(cart);
-  const count = ids.reduce((s,id) => s + cart[id], 0);
-  const total = ids.reduce((s,id) => s + cart[id] * products.find(p => p.id==id).price, 0);
-  $('cartCount').textContent = count;
-  $('total').textContent = money(total);
-  $('items').innerHTML = ids.length ? ids.map(id => {
-    const p = products.find(x => x.id==id);
-    return `<div class="row">
-      <div class="em" style="background:${TINTS[p.cat]}">${p.emoji}</div>
-      <div class="t"><strong>${p.name}</strong><div>${money(p.price)}</div>
-        <div class="qty">
-          <button data-dec="${id}" aria-label="Decrease">−</button>
-          <span>${cart[id]}</span>
-          <button data-inc="${id}" aria-label="Increase">+</button>
-        </div></div>
-      <button class="rm" data-rm="${id}">Remove</button>
-    </div>`;
-  }).join('') : '<p class="empty">Your cart is empty. Add something colorful.</p>';
-}
+        // Render Product Cards
+        function renderGrid() {
+            const filtered = currentCategory === 'All' 
+                ? products 
+                : products.filter(p => p.cat === currentCategory);
 
-function toast(msg){
-  const t = $('toast'); t.textContent = msg; t.classList.add('show');
-  clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('show'), 1800);
-}
-function openCart(open){
-  $('drawer').classList.toggle('open', open);
-  $('overlay').classList.toggle('open', open);
-}
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = filtered.map(p => `
+                <article class="card">
+                    <div class="thumb">${p.emoji}</div>
+                    <div class="info">
+                        <span class="tag">${p.cat}</span>
+                        <h3>${p.name}</h3>
+                        <p class="description">${p.desc}</p>
+                        <div class="price-row">
+                            <span class="price">${formatMoney(p.price)}</span>
+                            <button class="add-btn" data-id="${p.id}">Add to Cart</button>
+                        </div>
+                    </div>
+                </article>
+            `).join('');
+        }
 
-/* Events */
-$('chips').addEventListener('click', e => {
-  if(e.target.dataset.cat){ category = e.target.dataset.cat; renderChips(); renderGrid(); }
-});
-$('search').addEventListener('input', e => { query = e.target.value; renderGrid(); });
-$('grid').addEventListener('click', e => {
-  const id = e.target.dataset.id;
-  if(id){ cart[id] = (cart[id]||0) + 1; renderCart(); toast('Added to cart'); }
-});
-$('items').addEventListener('click', e => {
-  const d = e.target.dataset;
-  if(d.inc) cart[d.inc]++;
-  if(d.dec){ cart[d.dec]--; if(cart[d.dec] <= 0) delete cart[d.dec]; }
-  if(d.rm) delete cart[d.rm];
-  renderCart();
-});
-$('cartBtn').onclick = () => openCart(true);
-$('close').onclick = $('overlay').onclick = () => openCart(false);
-document.addEventListener('keydown', e => { if(e.key==='Escape') openCart(false); });
-$('checkout').onclick = () => {
-  if(!Object.keys(cart).length){ toast('Your cart is empty'); return; }
-  cart = {}; renderCart(); openCart(false); toast('Order placed. Thank you!');
-};
+        // Render Cart Drawer Content
+        function renderCart() {
+            const ids = Object.keys(cart);
+            const totalCount = ids.reduce((sum, id) => sum + cart[id], 0);
+            const totalPrice = ids.reduce((sum, id) => {
+                const item = products.find(p => p.id == id);
+                return sum + (item.price * cart[id]);
+            }, 0);
 
-renderChips(); renderGrid(); renderCart();
-</script>
+            document.getElementById('cartCount').textContent = totalCount;
+            document.getElementById('cartTotal').textContent = formatMoney(totalPrice);
+
+            const itemsContainer = document.getElementById('items');
+            itemsContainer.innerHTML = ids.length ? ids.map(id => {
+                const p = products.find(x => x.id == id);
+                return `
+                    <div class="cart-row">
+                        <div class="emoji">${p.emoji}</div>
+                        <div class="cart-details">
+                            <h4>${p.name}</h4>
+                            <div>${formatMoney(p.price)}</div>
+                            <div class="qty-controls">
+                                <button data-dec="${id}">−</button>
+                                <span>${cart[id]}</span>
+                                <button data-inc="${id}">+</button>
+                            </div>
+                        </div>
+                        <button class="remove-item" data-rm="${id}">Remove</button>
+                    </div>
+                `;
+            }).join('') : '<p class="empty-cart">Your cart is empty. Add a magical experience!</p>';
+        }
+
+        // Toast feedback trigger
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            clearTimeout(toast.timer);
+            toast.timer = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }
+
+        // Open/Close Cart Drawer
+        function toggleCart(isOpen) {
+            document.getElementById('cartDrawer').classList.toggle('open', isOpen);
+            document.getElementById('overlay').classList.toggle('open', isOpen);
+        }
+
+        // Event Listeners
+        document.getElementById('chipsContainer').addEventListener('click', e => {
+            if (e.target.dataset.cat) {
+                currentCategory = e.target.dataset.cat;
+                renderChips();
+                renderGrid();
+            }
+        });
+
+        document.getElementById('productGrid').addEventListener('click', e => {
+            const id = e.target.dataset.id;
+            if (id) {
+                cart[id] = (cart[id] || 0) + 1;
+                renderCart();
+                showToast('✨ Added to your magical cart!');
+            }
+        });
+
+        document.getElementById('items').addEventListener('click', e => {
+            const dataset = e.target.dataset;
+            if (dataset.inc) cart[dataset.inc]++;
+            if (dataset.dec) {
+                cart[dataset.dec]--;
+                if (cart[dataset.dec] <= 0) delete cart[dataset.dec];
+            }
+            if (dataset.rm) delete cart[dataset.rm];
+            renderCart();
+        });
+
+        document.getElementById('cartBtn').onclick = () => toggleCart(true);
+        document.getElementById('closeBtn').onclick = document.getElementById('overlay').onclick = () => toggleCart(false);
+
+        document.getElementById('checkoutBtn').onclick = () => {
+            if (!Object.keys(cart).length) {
+                showToast('Your cart is empty!');
+                return;
+            }
+            cart = {};
+            renderCart();
+            toggleCart(false);
+            showToast('🎉 Order confirmed! Have a magical visit!');
+        };
+
+        // Initial Initialization
+        renderChips();
+        renderGrid();
+        renderCart();
+    </script>
 </body>
 </html>
